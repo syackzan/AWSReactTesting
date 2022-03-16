@@ -28,6 +28,19 @@
   color: #61dafb;
 }
 
+.borderBottom {
+  border-bottom: solid 2px black;
+}
+
+.marginBottom {
+  margin-bottom: 5px;
+}
+
+.fitContent {
+  height: fit-content;
+  width: fit-content;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

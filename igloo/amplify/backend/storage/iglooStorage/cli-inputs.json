@@ -1,0 +1,10 @@
+{
+  "resourceName": "iglooStorage",
+  "tableName": "iglooSongs",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

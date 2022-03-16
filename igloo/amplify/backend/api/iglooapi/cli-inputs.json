@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/greeting": {
+      "name": "/greeting",
+      "lambdaFunction": "igloofunction",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

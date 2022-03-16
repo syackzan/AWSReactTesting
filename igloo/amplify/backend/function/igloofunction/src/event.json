@@ -1,0 +1,7 @@
+{
+    "httpMethod": "DELETE",
+    "path": "/greeting/592be8df-7e46-40fb-9b1e-3f44e277a172",
+    "queryStringParameters": {
+      "limit": "10"
+    }
+  }

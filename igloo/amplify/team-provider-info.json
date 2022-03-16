@@ -1,0 +1,23 @@
+{
+  "local": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-igloo-local-85817-authRole",
+      "UnauthRoleArn": "arn:aws:iam::081362633580:role/amplify-igloo-local-85817-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::081362633580:role/amplify-igloo-local-85817-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-igloo-local-85817-deployment",
+      "UnauthRoleName": "amplify-igloo-local-85817-unauthRole",
+      "StackName": "amplify-igloo-local-85817",
+      "StackId": "arn:aws:cloudformation:us-east-2:081362633580:stack/amplify-igloo-local-85817/cb10d2b0-9e37-11ec-9466-020f8ccce900",
+      "AmplifyAppId": "d1o8g944537aim"
+    },
+    "categories": {
+      "function": {
+        "igloofunction": {
+          "deploymentBucketName": "amplify-igloo-local-85817-deployment",
+          "s3Key": "amplify-builds/igloofunction-5450415541424d477758-build.zip"
+        }
+      }
+    }
+  }
+}
