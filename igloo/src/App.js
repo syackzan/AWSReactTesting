@@ -5,8 +5,6 @@ import SongCompiler from './components/SongCompiler'
 
 function App() {
 
-  
-
   return (
     <>
       <SongCompiler />
