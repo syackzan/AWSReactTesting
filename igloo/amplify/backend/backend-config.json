@@ -7,25 +7,7 @@
       "dependsOn": [
         {
           "category": "storage",
-          "resourceName": "vanceJoySongStorage",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "iglooStorage",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "britneySongStorage",
+          "resourceName": "songStorage",
           "attributes": [
             "Name",
             "Arn",
@@ -52,15 +34,7 @@
     }
   },
   "storage": {
-    "vanceJoySongStorage": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    },
-    "iglooStorage": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    },
-    "britneySongStorage": {
+    "songStorage": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
     }

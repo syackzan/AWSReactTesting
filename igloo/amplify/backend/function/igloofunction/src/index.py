@@ -5,10 +5,10 @@ import os
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from uuid import uuid4
+from boto3.dynamodb.conditions import Key, Attr
 
 client = boto3.client('dynamodb')
-TABLE = os.environ.get("STORAGE_BRITNEYSONGSTORAGE_NAME")
-tableName = "iglooSongs"
+TABLE = os.environ.get("STORAGE_SONGSTORAGE_NAME")
 
 app = Flask(__name__)
 CORS(app)
@@ -30,6 +30,8 @@ def create_song():
     request_json = request.get_json()
     client.put_item(TableName=TABLE, Item={
         'id': { 'S': str(uuid4()) },
+        'userId': {'S': request_json.get('userId')},
+        'singer': {'S': request_json.get('singer')},
         'name': {'S': request_json.get("name")},
         'year': {'S': request_json.get("year")},
         'link': {'S': request_json.get("link")},
@@ -43,6 +45,11 @@ def delete_song(song_id):
         Key={'id': {'S': song_id}}
     )
     return jsonify(message="song deleted")
+
+@app.route(BASE_ROUTE + '/<userId>', methods=['GET'])
+def get_song(userId):
+    response = TABLE.scan(FilterExpression=Attr('userId').eq(userId))
+    return jsonify(data=response)
 
 def handler(event, context):
     return awsgi.response(app, event, context)

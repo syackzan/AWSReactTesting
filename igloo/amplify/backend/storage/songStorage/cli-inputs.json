@@ -1,6 +1,6 @@
 {
-  "resourceName": "britneySongStorage",
-  "tableName": "britneySongs",
+  "resourceName": "songStorage",
+  "tableName": "allSongs",
   "partitionKey": {
     "fieldName": "id",
     "fieldType": "string"

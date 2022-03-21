@@ -1,18 +1,26 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 
 import { API } from 'aws-amplify'
+import { AccountContext } from '../Cognito/Account';
 
 const Homepage = () => {
 
+    const [status, setStatus] = useState(false);
     const [greeting, setGreeting] = useState(null);
     const [formState, setFormState] = useState({
         name: '',
         year: '',
-        link: ''
+        link: '',
+        userId: '',
+        singer: ''
     })
+    const [username, setUsername] = useState('')
+
     const [songs, setSongs] = useState([]);
+
+    const { getSession } = useContext(AccountContext);
 
     const handleChange = (event) => {
         event.preventDefault()
@@ -28,7 +36,7 @@ const Homepage = () => {
 
     const submitSong = async (event) => {
         event.preventDefault();
-
+        console.log(formState);
         try {
 
             const data = await API.post('iglooapi', '/greeting', {
@@ -38,7 +46,7 @@ const Homepage = () => {
             console.log(data);
 
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
 
     }
@@ -56,14 +64,38 @@ const Homepage = () => {
             setSongs(songData.data.Items)
         }
 
+
+
+        getSession()
+            .then(session => {
+                console.log('Session:', session)
+                setStatus(true);
+                setUsername(session.email)
+                setFormState({
+                    ...formState,
+                    userId: session.sub
+                })
+                console.log("Hello");
+
+                const fetchIt = async () => {
+                    console.log(session.sub);
+                    const userSongsData = await API.get('iglooapi', `/greeting/${session.sub}`);
+                    console.log(userSongsData);
+                }
+
+                fetchIt();
+
+
+            })
+            .catch(e => {
+                console.log('No Sessions')
+            })
+
         fetchData();
         fetchSongs();
 
-    }, [])
 
-    const checkValues = () => {
-        console.log(songs);
-    }
+    }, [])
 
     const deleteSong = async (id) => {
         console.log(`/greeting/${id}`);
@@ -82,7 +114,7 @@ const Homepage = () => {
                 {/* <img src={logo} className="App-logo" alt="logo" /> */}
             </header>
             <div className="container borderBottom marginBottom p-1">
-                <h1>{greeting}</h1>
+                <h1>{greeting} for {username}</h1>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Song Name</Form.Label>
@@ -91,6 +123,17 @@ const Homepage = () => {
                             placeholder="Enter song name..."
                             name="name"
                             value={formState.name}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Singer</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter singers name..."
+                            name="singer"
+                            value={formState.singer}
                             onChange={handleChange}
                         />
                     </Form.Group>

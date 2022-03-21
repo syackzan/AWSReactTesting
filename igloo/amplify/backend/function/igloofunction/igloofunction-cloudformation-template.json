@@ -23,6 +23,18 @@
     "apiiglooapiApiId": {
       "Type": "String",
       "Default": "apiiglooapiApiId"
+    },
+    "storagesongStorageName": {
+      "Type": "String",
+      "Default": "storagesongStorageName"
+    },
+    "storagesongStorageArn": {
+      "Type": "String",
+      "Default": "storagesongStorageArn"
+    },
+    "storagesongStorageStreamArn": {
+      "Type": "String",
+      "Default": "storagesongStorageStreamArn"
     }
   },
   "Conditions": {
@@ -83,6 +95,15 @@
             },
             "API_IGLOOAPI_APIID": {
               "Ref": "apiiglooapiApiId"
+            },
+            "STORAGE_SONGSTORAGE_NAME": {
+              "Ref": "storagesongStorageName"
+            },
+            "STORAGE_SONGSTORAGE_ARN": {
+              "Ref": "storagesongStorageArn"
+            },
+            "STORAGE_SONGSTORAGE_STREAMARN": {
+              "Ref": "storagesongStorageStreamArn"
             }
           }
         },
@@ -197,28 +218,31 @@
             {
               "Effect": "Allow",
               "Action": [
-                "apigateway:POST",
-                "apigateway:PUT",
-                "apigateway:GET",
-                "apigateway:HEAD",
-                "apigateway:OPTIONS",
-                "apigateway:PATCH",
-                "apigateway:DELETE"
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
               ],
               "Resource": [
                 {
+                  "Ref": "storagesongStorageArn"
+                },
+                {
                   "Fn::Join": [
-                    "",
+                    "/",
                     [
-                      "arn:aws:apigateway:",
                       {
-                        "Ref": "AWS::Region"
+                        "Ref": "storagesongStorageArn"
                       },
-                      "::/restapis/",
-                      {
-                        "Ref": "apiiglooapiApiName"
-                      },
-                      "/*"
+                      "index/*"
                     ]
                   ]
                 }

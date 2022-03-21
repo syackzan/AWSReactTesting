@@ -6,14 +6,24 @@ import Login from '../Cognito/Login';
 import Status from '../Cognito/Status';
 import Attributes from '../Cognito/Attributes';
 
+import { Route } from 'react-router-dom';
+
 const SongCompiler = () => {
     return (
         <Account>
-            <Status />
-            <SignUp />
-            <Login />
-            <Attributes />
-            <Homepage />
+            <Route exact path='/'>
+                <Login />
+            </Route>
+            <Route exact path='/signup'>
+                <SignUp />
+            </Route>
+            <Route exact path='/settings'>
+                <Attributes />
+            </Route>
+            <Route exact path='/homepage'>
+                <Homepage />
+                <Status />
+            </Route>
         </Account>
     )
 }

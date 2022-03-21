@@ -7,10 +7,6 @@ const Attributes = () => {
 
     const { getSession } = useContext(AccountContext)
 
-    useEffect(() => {
-        //TODO: Fetch current plan from cognito
-    })
-
     const onSubmit = (event) => {
         event.preventDefault();
 

@@ -20,12 +20,19 @@ const Status = () => {
             })
     }, []);
 
+    const logoutRedirect = async () => {
+        
+        await logout();
+
+        window.location.assign('/')
+    }
+
+
     return (
         <div>
             {status ? (
                 <div>
-                    <h3>{username}, Logged In!</h3>
-                    <button onClick={logout}>Logout</button>
+                    <button onClick={logoutRedirect}>Logout</button>
                 </div>
             ) : 'Please Log In Below'}
         </div>

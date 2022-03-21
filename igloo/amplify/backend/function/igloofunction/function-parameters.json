@@ -2,19 +2,7 @@
   "lambdaLayers": [],
   "permissions": {
     "storage": {
-      "vanceJoySongStorage": [
-        "create",
-        "read",
-        "update",
-        "delete"
-      ],
-      "iglooStorage": [
-        "create",
-        "read",
-        "update",
-        "delete"
-      ],
-      "britneySongStorage": [
+      "songStorage": [
         "create",
         "read",
         "update",

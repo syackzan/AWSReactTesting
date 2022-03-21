@@ -15,7 +15,7 @@
       "function": {
         "igloofunction": {
           "deploymentBucketName": "amplify-igloo-local-85817-deployment",
-          "s3Key": "amplify-builds/igloofunction-5450415541424d477758-build.zip"
+          "s3Key": "amplify-builds/igloofunction-4d554f4c456d6a674463-build.zip"
         }
       }
     }

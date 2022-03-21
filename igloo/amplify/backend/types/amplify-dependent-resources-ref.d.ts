@@ -15,23 +15,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "storage": {
-        "vanceJoySongStorage": {
-            "Name": "string",
-            "Arn": "string",
-            "StreamArn": "string",
-            "PartitionKeyName": "string",
-            "PartitionKeyType": "string",
-            "Region": "string"
-        },
-        "iglooStorage": {
-            "Name": "string",
-            "Arn": "string",
-            "StreamArn": "string",
-            "PartitionKeyName": "string",
-            "PartitionKeyType": "string",
-            "Region": "string"
-        },
-        "britneySongStorage": {
+        "songStorage": {
             "Name": "string",
             "Arn": "string",
             "StreamArn": "string",

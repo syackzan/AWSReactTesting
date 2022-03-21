@@ -4,6 +4,7 @@ import { AccountContext } from './Account';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -15,20 +16,25 @@ const Login = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        try{
+        try {
             const resp = await authenticate(username, password);
             console.log('Logged in!', resp);
-            window.location.reload();
-        } catch(e){
+            window.location.assign(`/homepage`);
+        } catch (e) {
             console.error('Failed to login', e);
-        } 
+        }
+
+        
 
     }
 
     return (
-        <>
+        <div className="centerIt">
             <div className="container">
-                <h1>Login</h1>
+                <div className="d-flex align-items-center flex-column">
+                    <h1><u>Song Compiler</u></h1>
+                    <h2>Login</h2>
+                </div>
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Enter Email</Form.Label>
@@ -54,8 +60,9 @@ const Login = () => {
                         Login
                     </Button>
                 </Form>
+                <Link className="d-flex justify-content-end navStyle" to="/signup">Sign Up</Link>
             </div>
-        </>
+        </div>
     )
 }
 
