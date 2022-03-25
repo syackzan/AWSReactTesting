@@ -1,42 +1,48 @@
 {
-  "function": {
-    "igloofunction": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "songStorage",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
+    "function": {
+        "igloofunction": {
+            "build": true,
+            "providerPlugin": "awscloudformation",
+            "service": "Lambda",
+            "dependsOn": [
+                {
+                    "category": "storage",
+                    "resourceName": "songStorage",
+                    "attributes": [
+                        "Name",
+                        "Arn",
+                        "StreamArn"
+                    ]
+                }
+            ]
         }
-      ]
-    }
-  },
-  "api": {
-    "iglooapi": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "igloofunction",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+    },
+    "api": {
+        "iglooapi": {
+            "service": "API Gateway",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "igloofunction",
+                    "attributes": [
+                        "Name",
+                        "Arn"
+                    ]
+                }
+            ]
         }
-      ]
+    },
+    "storage": {
+        "songStorage": {
+            "service": "DynamoDB",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "hosting": {
+        "amplifyhosting": {
+            "service": "amplifyhosting",
+            "type": "cicd"
+        }
     }
-  },
-  "storage": {
-    "songStorage": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    }
-  }
 }

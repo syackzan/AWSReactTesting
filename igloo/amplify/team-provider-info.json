@@ -17,6 +17,12 @@
           "deploymentBucketName": "amplify-igloo-local-85817-deployment",
           "s3Key": "amplify-builds/igloofunction-4d554f4c456d6a674463-build.zip"
         }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1o8g944537aim",
+          "type": "cicd"
+        }
       }
     }
   }
